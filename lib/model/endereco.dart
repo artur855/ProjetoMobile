@@ -12,7 +12,7 @@ class Endereco {
     this.cidade = map['cidade'];
     this.logradouro = map['logradouro'];
     this.cep = map['cep'];
-    this.estado = map['estado'];
+    this.estado = map['view.estado'];
   }
 
   Map<String, dynamic> toMap(){
@@ -20,7 +20,7 @@ class Endereco {
       'cidade': this.cidade,
       'logradouro': this.logradouro,
       'cep': this.cep,
-      'estado': this.estado
+      'view.estado': this.estado
     };
   }
 }

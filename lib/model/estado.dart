@@ -6,16 +6,21 @@ class Estado {
   Estado({this.id, this.sigla, this.nome});
 
   Estado.fromMap(Map<String, dynamic> map){
-    this.id = map['id'];
-    this.sigla = map['sigla'];
-    this.nome = map['nome'];
+    this.id = map['ID'];
+    this.sigla = map['SIGLA'];
+    this.nome = map['NOME'];
   }
 
   Map<String, dynamic> toMap(){
     return {
-      'id': this.id,
-      'sigla': this.sigla,
-      'nome': this.nome
+      'ID': this.id,
+      'SIGLA': this.sigla,
+      'NOME': this.nome
     };
+  }
+
+  @override
+  String toString() {
+    return this.toMap().toString();
   }
 }
