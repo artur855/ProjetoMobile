@@ -43,7 +43,12 @@ abstract class _EstadoForm with Store {
   }
 
   @computed
-  get isFormValido => msgNome == null && msgSigla == null;
+  get isFormValido => nome != null && nome.isNotEmpty && sigla != null && sigla.isNotEmpty;
+
+  void validarAll(){
+    validarNome(nome);
+    validarSigla(sigla);
+  }
 
   @action
   void validarNome(String value) {

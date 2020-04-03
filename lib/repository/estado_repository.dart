@@ -16,4 +16,15 @@ class EstadoRepository extends BaseRepository {
     await db.insert(tableName, estado.toMap());
   }
 
+  Future updateEstado(Estado estado) async {
+    var db = await super.db;
+    await db.update(tableName, estado.toMap(), where: 'id = ?', whereArgs: [estado.id]);
+  }
+
+  Future deletarEstado(Estado estado) async {
+    var db = await super.db;
+    await db.delete(tableName, where: 'id = ?', whereArgs: [estado.id]);
+  }
+
+
 }

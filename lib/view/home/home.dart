@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
       'name': 'Estado',
       'icon': Icons.location_on,
       'color': Colors.green[200],
-      'next': EstadoHome()
+      'next': '/estado'
     },
     {'name': 'Médico', 'icon': Icons.person, 'color': Colors.red[200]},
     {'name': 'Especialidade', 'icon': Icons.picture_as_pdf, 'color': Colors.blue[200]},
@@ -30,10 +30,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget generateMenuCard({String name, IconData icon, Color color, Widget next, BuildContext context}) {
+  Widget generateMenuCard({String name, IconData icon, Color color, String next, BuildContext context}) {
     return InkWell(
       onTap: () async {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => next));
+        Navigator.of(context).pushNamed(next);
       },
       child: Card(
         child: Padding(

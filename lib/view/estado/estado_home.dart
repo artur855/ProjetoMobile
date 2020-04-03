@@ -3,13 +3,15 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:projetomobile/repository/estado_repository.dart';
 import 'package:projetomobile/store/estado_store.dart';
 import 'package:projetomobile/view/estado/estado_add.dart';
+import 'package:projetomobile/view/estado/estado_edit.dart';
 
-class EstadoHome extends StatelessWidget {
+class EstadoHomeView extends StatelessWidget {
   final EstadoStore estadoStore = EstadoStore();
   final EstadoRepository estadoRepository = EstadoRepository();
 
   @override
   Widget build(BuildContext context) {
+    atualizarEstados();
     return Scaffold(
       appBar: AppBar(
         title: Text('Estado'),
@@ -23,34 +25,39 @@ class EstadoHome extends StatelessWidget {
             itemCount: estadoStore.estados.length,
             itemBuilder: (context, i) {
               var estado = estadoStore.estados[i];
-              return Container(
-                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                decoration: BoxDecoration(),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          estado.nome,
-                          style: TextStyle(fontSize: 28.0, color: Colors.grey[700]),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          estado.sigla,
-                          style: TextStyle(fontSize: 12.0, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.adjust,
-                      size: 40,
-                    )
-                  ],
+              return InkWell(
+                onTap: () async {
+                  await Navigator.of(context).push(MaterialPageRoute(builder: (_) => EstadoEditView(estado: estado)));
+                  atualizarEstados();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            estado.nome,
+                            style: TextStyle(fontSize: 28.0, color: Colors.grey[700]),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            estado.sigla,
+                            style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                      Icon(
+                        Icons.adjust,
+                        size: 40,
+                      )
+                    ],
+                  ),
                 ),
               );
             },
@@ -63,10 +70,8 @@ class EstadoHome extends StatelessWidget {
         ),
         backgroundColor: Colors.green[200],
         onPressed: () async {
-          var shouldRefresh = await Navigator.of(context).push(MaterialPageRoute(builder: (context) => EstadoAddView()));
-          if (shouldRefresh != null && shouldRefresh) {
-            await atualizarEstados();
-          }
+          await Navigator.of(context).push(MaterialPageRoute(builder: (context) => EstadoAddView()));
+          atualizarEstados();
         },
       ),
     );
@@ -76,4 +81,6 @@ class EstadoHome extends StatelessWidget {
     var estados = await estadoRepository.getAllEstados();
     estadoStore.updateEstados(estados);
   }
+
+
 }
