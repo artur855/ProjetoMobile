@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projetomobile/view/estado/estado_home.dart';
+import 'package:projetomobile/view/estado/estado_home_view.dart';
 
 class HomePage extends StatelessWidget {
   var menuCardsConfig = [
-    {
-      'name': 'Estado',
-      'icon': Icons.location_on,
-      'color': Colors.green[200],
-      'next': '/estado'
-    },
-    {'name': 'Médico', 'icon': Icons.person, 'color': Colors.red[200]},
-    {'name': 'Especialidade', 'icon': Icons.picture_as_pdf, 'color': Colors.blue[200]},
+    {'name': 'Estado', 'icon': Icons.map, 'color': Colors.green[200], 'next': '/estado'},
+    {'name': 'Endereço', 'icon': Icons.location_on, 'color': Colors.blue[200], 'next': '/endereco'},
+    {'name': 'Médico', 'icon': Icons.person, 'color': Colors.red[200], 'next': '/medico'},
   ];
 
   @override

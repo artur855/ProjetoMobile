@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:projetomobile/repository/estado_repository.dart';
-import 'package:projetomobile/store/estado_store.dart';
-import 'package:projetomobile/view/estado/estado_add.dart';
-import 'package:projetomobile/view/estado/estado_edit.dart';
+import 'package:projetomobile/store/estado/estado_store.dart';
+import 'package:projetomobile/view/estado/estado_add_view.dart';
+import 'package:projetomobile/view/estado/estado_edit_view.dart';
 
 class EstadoHomeView extends StatelessWidget {
   final EstadoStore estadoStore = EstadoStore();
@@ -78,7 +78,7 @@ class EstadoHomeView extends StatelessWidget {
   }
 
   Future atualizarEstados() async {
-    var estados = await estadoRepository.getAllEstados();
+    var estados = await estadoRepository.getAll();
     estadoStore.updateEstados(estados);
   }
 

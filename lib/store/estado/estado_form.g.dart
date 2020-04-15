@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'estado_store.dart';
+part of 'estado_form.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,51 +8,7 @@ part of 'estado_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$EstadoStore on _EstadoBase, Store {
-  final _$estadosAtom = Atom(name: '_EstadoBase.estados');
-
-  @override
-  ObservableList<Estado> get estados {
-    _$estadosAtom.context.enforceReadPolicy(_$estadosAtom);
-    _$estadosAtom.reportObserved();
-    return super.estados;
-  }
-
-  @override
-  set estados(ObservableList<Estado> value) {
-    _$estadosAtom.context.conditionallyRunInAction(() {
-      super.estados = value;
-      _$estadosAtom.reportChanged();
-    }, _$estadosAtom, name: '${_$estadosAtom.name}_set');
-  }
-
-  final _$_EstadoBaseActionController = ActionController(name: '_EstadoBase');
-
-  @override
-  void updateEstados(List<Estado> estados) {
-    final _$actionInfo = _$_EstadoBaseActionController.startAction();
-    try {
-      return super.updateEstados(estados);
-    } finally {
-      _$_EstadoBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  String toString() {
-    final string = 'estados: ${estados.toString()}';
-    return '{$string}';
-  }
-}
-
 mixin _$EstadoForm on _EstadoForm, Store {
-  Computed<dynamic> _$isFormValidoComputed;
-
-  @override
-  dynamic get isFormValido =>
-      (_$isFormValidoComputed ??= Computed<dynamic>(() => super.isFormValido))
-          .value;
-
   final _$nomeAtom = Atom(name: '_EstadoForm.nome');
 
   @override
@@ -124,7 +80,7 @@ mixin _$EstadoForm on _EstadoForm, Store {
   final _$_EstadoFormActionController = ActionController(name: '_EstadoForm');
 
   @override
-  void validarNome(String value) {
+  bool validarNome(String value) {
     final _$actionInfo = _$_EstadoFormActionController.startAction();
     try {
       return super.validarNome(value);
@@ -134,7 +90,7 @@ mixin _$EstadoForm on _EstadoForm, Store {
   }
 
   @override
-  void validarSigla(String value) {
+  bool validarSigla(String value) {
     final _$actionInfo = _$_EstadoFormActionController.startAction();
     try {
       return super.validarSigla(value);
@@ -146,7 +102,7 @@ mixin _$EstadoForm on _EstadoForm, Store {
   @override
   String toString() {
     final string =
-        'nome: ${nome.toString()},sigla: ${sigla.toString()},msgNome: ${msgNome.toString()},msgSigla: ${msgSigla.toString()},isFormValido: ${isFormValido.toString()}';
+        'nome: ${nome.toString()},sigla: ${sigla.toString()},msgNome: ${msgNome.toString()},msgSigla: ${msgSigla.toString()}';
     return '{$string}';
   }
 }

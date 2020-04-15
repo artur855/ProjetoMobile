@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projetomobile/model/estado.dart';
 import 'package:projetomobile/repository/estado_repository.dart';
-import 'package:projetomobile/store/estado_store.dart';
-import 'package:projetomobile/view/estado/estado_form.dart';
+import 'package:projetomobile/store/estado/estado_form.dart';
+import 'package:projetomobile/store/estado/estado_store.dart';
+import 'package:projetomobile/view/estado/estado_form_view.dart';
 
 class EstadoAddView extends StatelessWidget {
   @override
@@ -20,11 +21,9 @@ class EstadoAddView extends StatelessWidget {
   }
 
   Future onSubmit(BuildContext context, EstadoForm estadoForm, EstadoRepository estadoRepository) async {
-    if (estadoForm.isFormValido) {
-      await estadoRepository.addEstado(Estado(nome: estadoForm.nome, sigla: estadoForm.sigla));
+    if (estadoForm.validarAll()) {
+      await estadoRepository.insert(Estado(nome: estadoForm.nome, sigla: estadoForm.sigla));
       Navigator.pop(context);
-    } else {
-      estadoForm.validarAll();
     }
   }
 }

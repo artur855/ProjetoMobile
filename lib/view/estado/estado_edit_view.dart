@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:projetomobile/model/estado.dart';
 import 'package:projetomobile/repository/estado_repository.dart';
-import 'package:projetomobile/store/estado_store.dart';
-import 'package:projetomobile/view/estado/estado_form.dart';
+import 'package:projetomobile/store/estado/estado_form.dart';
+import 'package:projetomobile/store/estado/estado_store.dart';
+import 'package:projetomobile/view/estado/estado_form_view.dart';
 
 class EstadoEditView extends StatelessWidget {
   final EstadoForm estadoForm = EstadoForm();
@@ -26,19 +27,14 @@ class EstadoEditView extends StatelessWidget {
               size: 32,
             ),
             onSelected: (value) async {
-              switch (value){
+              switch (value) {
                 case 0:
-                  await estadoRepository.deletarEstado(estado);
+                  await estadoRepository.delete(estado);
                   Navigator.of(context).popUntil(ModalRoute.withName('/estado'));
               }
             },
             itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  child: Text('Deletar estado'),
-                  value: 0
-                )
-              ];
+              return [PopupMenuItem(child: Text('Deletar estado'), value: 0)];
             },
           )
         ],
@@ -53,13 +49,11 @@ class EstadoEditView extends StatelessWidget {
   }
 
   Future onSubmit(BuildContext context, EstadoForm estadoForm, EstadoRepository estadoRepository) async {
-    if (estadoForm.isFormValido) {
+    if (estadoForm.validarAll()) {
       estado.nome = estadoForm.nome;
       estado.sigla = estadoForm.sigla;
-      await estadoRepository.updateEstado(estado);
+      await estadoRepository.update(estado);
       Navigator.pop(context);
-    } else {
-      estadoForm.validarAll();
     }
   }
 }
