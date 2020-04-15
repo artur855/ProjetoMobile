@@ -18,12 +18,13 @@ abstract class _EstadoForm with Store {
 
   List<ReactionDisposer> _disposers;
 
-  void criarValidacoes() {
+  EstadoForm(){
     _disposers = [
       reaction((_) => nome, validarNome),
       reaction((_) => sigla, validarSigla),
     ];
   }
+
 
 
   bool validarAll(){

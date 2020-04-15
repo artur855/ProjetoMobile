@@ -15,7 +15,6 @@ class EstadoFormView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    estadoForm.criarValidacoes();
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24.0),

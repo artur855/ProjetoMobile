@@ -1,34 +1,17 @@
 import 'package:mobx/mobx.dart';
-import 'package:projetomobile/model/endereco.dart';
+import 'package:projetomobile/model/medico.dart';
 
 part 'medico_store.g.dart';
 
 class MedicoStore = _MedicoStore with _$MedicoStore;
 
-abstract class _MedicoStore with Store{
+abstract class _MedicoStore with Store {
   @observable
-  String nome;
+  ObservableList<Medico> medicos = ObservableList<Medico>();
 
-  @observable
-  int crm;
-
-  @observable
-  int telefone;
-
-  @observable
-  Endereco endereco;
-
-  @observable
-  String msgNome;
-
-  @observable
-  String msgCrm;
-
-  @observable
-  String msgTelefone;
-
-  @observable
-  String msgEndereco;
-
+  @action
+  void updateMedicos(List<Medico> medicos){
+    this.medicos = ObservableList.of(medicos);
+  }
 
 }

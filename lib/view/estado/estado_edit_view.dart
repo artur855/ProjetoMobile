@@ -7,7 +7,6 @@ import 'package:projetomobile/store/estado/estado_store.dart';
 import 'package:projetomobile/view/estado/estado_form_view.dart';
 
 class EstadoEditView extends StatelessWidget {
-  final EstadoForm estadoForm = EstadoForm();
   final EstadoRepository estadoRepository = EstadoRepository();
   final Estado estado;
 
@@ -15,7 +14,6 @@ class EstadoEditView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    estadoForm.criarValidacoes();
     return Scaffold(
       appBar: AppBar(
         title: Text('Editar estado'),
@@ -53,6 +51,7 @@ class EstadoEditView extends StatelessWidget {
       estado.nome = estadoForm.nome;
       estado.sigla = estadoForm.sigla;
       await estadoRepository.update(estado);
+      estadoForm.dispose();
       Navigator.pop(context);
     }
   }

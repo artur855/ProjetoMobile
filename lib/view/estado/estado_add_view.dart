@@ -22,7 +22,12 @@ class EstadoAddView extends StatelessWidget {
 
   Future onSubmit(BuildContext context, EstadoForm estadoForm, EstadoRepository estadoRepository) async {
     if (estadoForm.validarAll()) {
-      await estadoRepository.insert(Estado(nome: estadoForm.nome, sigla: estadoForm.sigla));
+      Estado estado = Estado(
+        nome: estadoForm.nome,
+        sigla: estadoForm.sigla,
+      );
+      await estadoRepository.insert(estado);
+      estadoForm.dispose();
       Navigator.pop(context);
     }
   }

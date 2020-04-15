@@ -49,6 +49,7 @@ class EnderecoEditView extends StatelessWidget {
       endereco.cep = enderecoForm.cep;
       endereco.estadoId = enderecoForm.estado.id;
       await enderecoRepository.update(endereco);
+      enderecoForm.dispose();
       Navigator.pop(context);
     }
   }

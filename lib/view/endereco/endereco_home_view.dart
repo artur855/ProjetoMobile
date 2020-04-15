@@ -28,7 +28,7 @@ class EnderecoHomeView extends StatelessWidget {
               return InkWell(
                 onTap: () async {
                   await Navigator.of(context).push(MaterialPageRoute(builder: (_) => EnderecoEditView(endereco: endereco)));
-                  atualizarEnderecos();
+                  await atualizarEnderecos();
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
@@ -70,7 +70,7 @@ class EnderecoHomeView extends StatelessWidget {
         backgroundColor: Colors.blue[200],
         onPressed: () async {
           await Navigator.of(context).push(MaterialPageRoute(builder: (context) => EnderecoAddView()));
-          atualizarEnderecos();
+          await atualizarEnderecos();
         },
       ),
     );
@@ -78,7 +78,6 @@ class EnderecoHomeView extends StatelessWidget {
 
   Future atualizarEnderecos() async {
     var enderecos = await enderecoRepository.getAll(includeEstado: true);
-    print(enderecos);
     enderecoStore.updateEnderecos(enderecos);
   }
 }

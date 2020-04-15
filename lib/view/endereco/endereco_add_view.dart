@@ -28,6 +28,7 @@ class EnderecoAddView extends StatelessWidget {
         estado: enderecoForm.estado
       );
       await enderecoRepository.insert(endereco);
+      enderecoForm.dispose();
       Navigator.of(context).pop();
     }
   }
