@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:projetomobile/model/estado.dart';
-import 'package:projetomobile/repository/estado_repository.dart';
 part 'estado_store.g.dart';
 // flutter packages pub run build_runner build
 

@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+
 part 'estado_form.g.dart';
 
 class EstadoForm = _EstadoForm with _$EstadoForm;
@@ -18,7 +19,7 @@ abstract class _EstadoForm with Store {
 
   List<ReactionDisposer> _disposers;
 
-  EstadoForm(){
+  void criarValidacoes() {
     _disposers = [
       reaction((_) => nome, validarNome),
       reaction((_) => sigla, validarSigla),
@@ -42,7 +43,7 @@ abstract class _EstadoForm with Store {
   @action
   bool validarSigla(String value) {
     msgSigla = isValido(value) && value.length == 2 ? null : 'Sigla deve ter duas letras';
-    return msgNome == null;
+    return msgSigla == null;
   }
 
   bool isValido(String value) {

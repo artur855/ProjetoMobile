@@ -1,4 +1,5 @@
 import 'package:projetomobile/repository/sql/ddl.dart';
+import 'package:projetomobile/repository/sql/populate_sql.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -6,7 +7,7 @@ abstract class BaseRepository<T> {
   Database _db;
 
   final String _dbName = 'projeto_mobile.db';
-  final int dbVersion = 12;
+  final int dbVersion = 75;
 
   String tableName;
 
@@ -32,26 +33,41 @@ abstract class BaseRepository<T> {
   }
 
   Future _onCreate(Database db, int version) async {
-    await runDDLs(db);
+    await createTables(db);
   }
 
   Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    await runDROPs(db);
-    await runDDLs(db);
+    await dropTables(db);
+    await createTables(db);
+    await populateDB(db);
   }
 
-  Future runDDLs(Database db) async {
+  Future dropTables(Database db) async {
+    await runSQLList(DROP_LIST, db);
+  }
+
+  Future createTables(Database db) async {
     await runSQLList(DDL_LIST, db);
   }
 
-  Future runDROPs(Database db) async {
-    await runSQLList(DROP_LIST, db);
+  Future populateDB(db) async {
+    await runSQLList(POPULATE_USUARIO, db);
+    await runSQLList(POPULATE_ESTADOS, db);
+    await runSQLList(POPULATE_ENDERECO, db);
+    await runSQLList(POPULATE_ESPECIALIDADE, db);
+    await runSQLList(POPULATE_COBERTURA, db);
+    await runSQLList(POPULATE_PACIENTE, db);
+    await runSQLList(POPULATE_MEDICO, db);
   }
 
   Future runSQLList(List<String> list, Database db) async {
     list.forEach((ddl) async {
       print('Executando: ' + ddl);
-      await db.execute(ddl);
+      try {
+        await db.execute(ddl);
+      } catch (e) {
+        print('Erro na execução do script: $ddl');
+      }
     });
   }
 }

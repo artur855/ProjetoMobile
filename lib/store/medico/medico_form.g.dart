@@ -43,38 +43,72 @@ mixin _$MedicoForm on _MedicoForm, Store {
     }, _$crmAtom, name: '${_$crmAtom.name}_set');
   }
 
-  final _$telefoneAtom = Atom(name: '_MedicoForm.telefone');
+  final _$especialidadeAtom = Atom(name: '_MedicoForm.especialidade');
 
   @override
-  int get telefone {
-    _$telefoneAtom.context.enforceReadPolicy(_$telefoneAtom);
-    _$telefoneAtom.reportObserved();
-    return super.telefone;
+  Especialidade get especialidade {
+    _$especialidadeAtom.context.enforceReadPolicy(_$especialidadeAtom);
+    _$especialidadeAtom.reportObserved();
+    return super.especialidade;
   }
 
   @override
-  set telefone(int value) {
-    _$telefoneAtom.context.conditionallyRunInAction(() {
-      super.telefone = value;
-      _$telefoneAtom.reportChanged();
-    }, _$telefoneAtom, name: '${_$telefoneAtom.name}_set');
+  set especialidade(Especialidade value) {
+    _$especialidadeAtom.context.conditionallyRunInAction(() {
+      super.especialidade = value;
+      _$especialidadeAtom.reportChanged();
+    }, _$especialidadeAtom, name: '${_$especialidadeAtom.name}_set');
   }
 
-  final _$enderecoAtom = Atom(name: '_MedicoForm.endereco');
+  final _$loginAtom = Atom(name: '_MedicoForm.login');
 
   @override
-  Endereco get endereco {
-    _$enderecoAtom.context.enforceReadPolicy(_$enderecoAtom);
-    _$enderecoAtom.reportObserved();
-    return super.endereco;
+  String get login {
+    _$loginAtom.context.enforceReadPolicy(_$loginAtom);
+    _$loginAtom.reportObserved();
+    return super.login;
   }
 
   @override
-  set endereco(Endereco value) {
-    _$enderecoAtom.context.conditionallyRunInAction(() {
-      super.endereco = value;
-      _$enderecoAtom.reportChanged();
-    }, _$enderecoAtom, name: '${_$enderecoAtom.name}_set');
+  set login(String value) {
+    _$loginAtom.context.conditionallyRunInAction(() {
+      super.login = value;
+      _$loginAtom.reportChanged();
+    }, _$loginAtom, name: '${_$loginAtom.name}_set');
+  }
+
+  final _$senhaAtom = Atom(name: '_MedicoForm.senha');
+
+  @override
+  String get senha {
+    _$senhaAtom.context.enforceReadPolicy(_$senhaAtom);
+    _$senhaAtom.reportObserved();
+    return super.senha;
+  }
+
+  @override
+  set senha(String value) {
+    _$senhaAtom.context.conditionallyRunInAction(() {
+      super.senha = value;
+      _$senhaAtom.reportChanged();
+    }, _$senhaAtom, name: '${_$senhaAtom.name}_set');
+  }
+
+  final _$confSenhaAtom = Atom(name: '_MedicoForm.confSenha');
+
+  @override
+  String get confSenha {
+    _$confSenhaAtom.context.enforceReadPolicy(_$confSenhaAtom);
+    _$confSenhaAtom.reportObserved();
+    return super.confSenha;
+  }
+
+  @override
+  set confSenha(String value) {
+    _$confSenhaAtom.context.conditionallyRunInAction(() {
+      super.confSenha = value;
+      _$confSenhaAtom.reportChanged();
+    }, _$confSenhaAtom, name: '${_$confSenhaAtom.name}_set');
   }
 
   final _$msgNomeAtom = Atom(name: '_MedicoForm.msgNome');
@@ -111,44 +145,150 @@ mixin _$MedicoForm on _MedicoForm, Store {
     }, _$msgCrmAtom, name: '${_$msgCrmAtom.name}_set');
   }
 
-  final _$msgTelefoneAtom = Atom(name: '_MedicoForm.msgTelefone');
+  final _$msgEspecialidadeAtom = Atom(name: '_MedicoForm.msgEspecialidade');
 
   @override
-  String get msgTelefone {
-    _$msgTelefoneAtom.context.enforceReadPolicy(_$msgTelefoneAtom);
-    _$msgTelefoneAtom.reportObserved();
-    return super.msgTelefone;
+  String get msgEspecialidade {
+    _$msgEspecialidadeAtom.context.enforceReadPolicy(_$msgEspecialidadeAtom);
+    _$msgEspecialidadeAtom.reportObserved();
+    return super.msgEspecialidade;
   }
 
   @override
-  set msgTelefone(String value) {
-    _$msgTelefoneAtom.context.conditionallyRunInAction(() {
-      super.msgTelefone = value;
-      _$msgTelefoneAtom.reportChanged();
-    }, _$msgTelefoneAtom, name: '${_$msgTelefoneAtom.name}_set');
+  set msgEspecialidade(String value) {
+    _$msgEspecialidadeAtom.context.conditionallyRunInAction(() {
+      super.msgEspecialidade = value;
+      _$msgEspecialidadeAtom.reportChanged();
+    }, _$msgEspecialidadeAtom, name: '${_$msgEspecialidadeAtom.name}_set');
   }
 
-  final _$msgEnderecoAtom = Atom(name: '_MedicoForm.msgEndereco');
+  final _$msgLoginAtom = Atom(name: '_MedicoForm.msgLogin');
 
   @override
-  String get msgEndereco {
-    _$msgEnderecoAtom.context.enforceReadPolicy(_$msgEnderecoAtom);
-    _$msgEnderecoAtom.reportObserved();
-    return super.msgEndereco;
+  String get msgLogin {
+    _$msgLoginAtom.context.enforceReadPolicy(_$msgLoginAtom);
+    _$msgLoginAtom.reportObserved();
+    return super.msgLogin;
   }
 
   @override
-  set msgEndereco(String value) {
-    _$msgEnderecoAtom.context.conditionallyRunInAction(() {
-      super.msgEndereco = value;
-      _$msgEnderecoAtom.reportChanged();
-    }, _$msgEnderecoAtom, name: '${_$msgEnderecoAtom.name}_set');
+  set msgLogin(String value) {
+    _$msgLoginAtom.context.conditionallyRunInAction(() {
+      super.msgLogin = value;
+      _$msgLoginAtom.reportChanged();
+    }, _$msgLoginAtom, name: '${_$msgLoginAtom.name}_set');
+  }
+
+  final _$msgSenhaAtom = Atom(name: '_MedicoForm.msgSenha');
+
+  @override
+  String get msgSenha {
+    _$msgSenhaAtom.context.enforceReadPolicy(_$msgSenhaAtom);
+    _$msgSenhaAtom.reportObserved();
+    return super.msgSenha;
+  }
+
+  @override
+  set msgSenha(String value) {
+    _$msgSenhaAtom.context.conditionallyRunInAction(() {
+      super.msgSenha = value;
+      _$msgSenhaAtom.reportChanged();
+    }, _$msgSenhaAtom, name: '${_$msgSenhaAtom.name}_set');
+  }
+
+  final _$msgConfSenhaAtom = Atom(name: '_MedicoForm.msgConfSenha');
+
+  @override
+  String get msgConfSenha {
+    _$msgConfSenhaAtom.context.enforceReadPolicy(_$msgConfSenhaAtom);
+    _$msgConfSenhaAtom.reportObserved();
+    return super.msgConfSenha;
+  }
+
+  @override
+  set msgConfSenha(String value) {
+    _$msgConfSenhaAtom.context.conditionallyRunInAction(() {
+      super.msgConfSenha = value;
+      _$msgConfSenhaAtom.reportChanged();
+    }, _$msgConfSenhaAtom, name: '${_$msgConfSenhaAtom.name}_set');
+  }
+
+  final _$_MedicoFormActionController = ActionController(name: '_MedicoForm');
+
+  @override
+  bool validarNome(String value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarNome(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validarCrm(int value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarCrm(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validarEspecialidade(Especialidade value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarEspecialidade(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validarLogin(String value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarLogin(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validarSenha(String value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarSenha(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validarConfSenha(String value) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.validarConfSenha(value);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setLoginMsg(String msg) {
+    final _$actionInfo = _$_MedicoFormActionController.startAction();
+    try {
+      return super.setLoginMsg(msg);
+    } finally {
+      _$_MedicoFormActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     final string =
-        'nome: ${nome.toString()},crm: ${crm.toString()},telefone: ${telefone.toString()},endereco: ${endereco.toString()},msgNome: ${msgNome.toString()},msgCrm: ${msgCrm.toString()},msgTelefone: ${msgTelefone.toString()},msgEndereco: ${msgEndereco.toString()}';
+        'nome: ${nome.toString()},crm: ${crm.toString()},especialidade: ${especialidade.toString()},login: ${login.toString()},senha: ${senha.toString()},confSenha: ${confSenha.toString()},msgNome: ${msgNome.toString()},msgCrm: ${msgCrm.toString()},msgEspecialidade: ${msgEspecialidade.toString()},msgLogin: ${msgLogin.toString()},msgSenha: ${msgSenha.toString()},msgConfSenha: ${msgConfSenha.toString()}';
     return '{$string}';
   }
 }

@@ -12,24 +12,24 @@ class Endereco {
     this.estadoId = this.estado.id;
   }
 
-  Endereco.fromMap(Map<String, dynamic> map, {includeEstado: false}){
+  Endereco.fromMap(Map<String, dynamic> map, {includeEstado: false}) {
     this.id = map['ID_ENDERECO'];
     this.estadoId = map['ID_ESTADO'];
     this.cidade = map['CIDADE'];
     this.logradouro = map['LOGRADOURO'];
     this.cep = map['CEP'];
 
-    if (includeEstado){
+    if (includeEstado) {
       this.estado = Estado.fromMap(map);
     }
   }
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'CIDADE': this.cidade,
       'LOGRADOURO': this.logradouro,
       'CEP': this.cep,
-      'ID_ESTADO': this.estadoId
+      'ID_ESTADO': this.estadoId,
     };
   }
 
@@ -40,7 +40,7 @@ class Endereco {
       'CIDADE': this.cidade,
       'LOGRADOURO': this.logradouro,
       'CEP': this.cep,
-      'ID_ESTADO': this.estadoId
+      'ID_ESTADO': this.estadoId,
     }.toString();
   }
 }

@@ -1,8 +1,7 @@
-import 'dart:html';
-
 import 'package:projetomobile/model/medico.dart';
 import 'package:projetomobile/repository/base_repository.dart';
 import 'package:projetomobile/repository/sql/medico_sql.dart';
+
 
 class MedicoRepository extends BaseRepository<Medico>{
 
@@ -10,15 +9,15 @@ class MedicoRepository extends BaseRepository<Medico>{
   String tableName = 'MEDICO';
 
   @override
-  Future<List<Medico>> getAll({bool includeEndereco: false}) async {
+  Future<List<Medico>> getAll({bool includeEspecialidade: true}) async {
     var db = await super.db;
     var medicos = List<Map>();
-    if (includeEndereco){
-      medicos = await db.rawQuery(SELECT_MEDICO_INCLUDE_ENDERECO);
+    if (includeEspecialidade){
+      medicos = await db.rawQuery(SELECT_MEDICO_INCLUDE_ESPECIALIDADE);
     } else{
-      medicos = await db.query(tableName, columns: ['ID_MEDICO', 'NOME_MEDICO', 'CRM', 'TELEFONE', 'ID_ENDERECO']);
+      medicos = await db.query(tableName, columns: ['ID_MEDICO', 'NOME_MEDICO', 'CRM', 'ID_ESPECIALIDADE']);
     }
-    return medicos.map((m)=> Medico.fromMap(m, includeEndereco: includeEndereco)).toList();
+    return medicos.map((m)=> Medico.fromMap(m, includeEspecialidade: includeEspecialidade)).toList();
   }
 
   @override

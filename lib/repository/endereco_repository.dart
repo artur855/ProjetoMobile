@@ -1,7 +1,7 @@
 import 'package:projetomobile/model/endereco.dart';
 import 'package:projetomobile/repository/base_repository.dart';
 import 'package:projetomobile/repository/sql/endereco_sql.dart';
-import 'package:sqflite_common/sqlite_api.dart';
+
 
 class EnderecoRepository extends BaseRepository<Endereco> {
   @override
