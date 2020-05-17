@@ -11,9 +11,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    usuarioRepository = Provider.of<UsuarioRepository>(context);
     loginForm.criarValidacoes();
-
+    usuarioRepository = Provider.of<UsuarioRepository>(context);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(16),
@@ -96,34 +95,42 @@ class LoginView extends StatelessWidget {
     bool authenticated = await usuarioRepository.autenticar(loginForm.login, loginForm.senha);
     if (authenticated) {
       switch (loginForm.radioSelected) {
-        case  1:
+        case 1:
           if (await usuarioRepository.isUsuarioPaciente(loginForm.login)) {
+            loginForm.dispose();
             Navigator.of(context).pushNamed('/paciente_home');
           } else {
-            await showDialog(context: context, child: AlertDialog(title: Text('Usuário nao é paciente')));
+            _mostrarErroLogin(context);
           }
           break;
         case 2:
           if (await usuarioRepository.isUsuarioMedico(loginForm.login)) {
+            loginForm.dispose();
             Navigator.of(context).pushNamed('/medico_home');
           } else {
-            await showDialog(context: context, child: AlertDialog(title: Text('Usuário nao é médico')));
+            _mostrarErroLogin(context);
           }
           break;
         case 3:
           if (loginForm.login == 'admin') {
+            loginForm.dispose();
             Navigator.of(context).pushNamed('/admin_home');
           } else {
-            await showDialog(context: context, child: AlertDialog(title: Text('Usuário nao é admin')));
+            _mostrarErroLogin(context);
           }
+          break;
       }
     } else {
-      showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: Text('Usuario e senha invalidos'),
-        ),
-      );
+      _mostrarErroLogin(context);
     }
+  }
+
+  void _mostrarErroLogin(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text('Usuario ou senha inválidos'),
+      ),
+    );
   }
 }

@@ -64,7 +64,7 @@ abstract class _ConsultaForm with Store {
 
   @action
   bool validarMedico(Medico value) {
-    msgMedico = value == null ? 'Escolha uma data' : null;
+    msgMedico = value == null ? 'Escolha um médico' : null;
     return msgMedico == null;
   }
 

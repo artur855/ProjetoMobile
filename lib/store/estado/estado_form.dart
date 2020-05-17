@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
 part 'estado_form.g.dart';
@@ -6,10 +7,10 @@ class EstadoForm = _EstadoForm with _$EstadoForm;
 
 abstract class _EstadoForm with Store {
   @observable
-  String nome = '';
+  String nome;
 
   @observable
-  String sigla = '';
+  String sigla;
 
   @observable
   String msgNome;
@@ -17,15 +18,23 @@ abstract class _EstadoForm with Store {
   @observable
   String msgSigla;
 
+  @observable
+  TextEditingController nomeController;
+  @observable
+  TextEditingController siglaController;
+
   List<ReactionDisposer> _disposers;
 
-  void criarValidacoes() {
+  void criarValidacoes({nome, sigla}) {
     _disposers = [
-      reaction((_) => nome, validarNome),
-      reaction((_) => sigla, validarSigla),
+      reaction((_) => this.nome, validarNome),
+      reaction((_) => this.sigla, validarSigla),
     ];
+    nomeController = TextEditingController(text: nome);
+    siglaController = TextEditingController(text: sigla);
+    this.nome = nome;
+    this.sigla = sigla;
   }
-
 
 
   bool validarAll(){
@@ -50,9 +59,17 @@ abstract class _EstadoForm with Store {
     return value != null && value.isNotEmpty;
   }
 
+  @action
+  void clearControllers(){
+    nomeController.clear();
+    siglaController.clear();
+  }
+
   void dispose() {
     for (final disposer in _disposers) {
       disposer();
     }
+    nomeController.dispose();
+    siglaController.dispose();
   }
 }

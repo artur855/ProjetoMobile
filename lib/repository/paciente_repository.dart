@@ -36,4 +36,12 @@ class PacienteRepository extends BaseRepository<Paciente> {
     var db = await super.db;
     await db.delete(tableName, where: 'ID_PACIENTE = ?', whereArgs: [paciente.id]);
   }
+
+  Future<Paciente> getByLogin(String login) async {
+    var db = await super.db;
+    var results = await db.rawQuery(SELECT_PACIENTE_BY_LOGIN, [login]);
+    var paciente = Paciente.fromMap(results[0], includeEndereco: false);
+    return paciente;
+  }
+
 }

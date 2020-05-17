@@ -21,15 +21,24 @@ class AdminConsultaAddView extends StatelessWidget {
 
   Future onSubmit(BuildContext context, ConsultaForm consultaForm, ConsultaRepository consultaRepository) async {
     if (consultaForm.validarAll()) {
-      var consulta = Consulta(
-        data: consultaForm.dataStr,
-        paciente: consultaForm.paciente,
-        medico: consultaForm.medico,
-        cobertura: consultaForm.cobertura,
-      );
-      await consultaRepository.insert(consulta);
-      consultaForm.dispose();
-      Navigator.of(context).pop();
+      try {
+        var consulta = Consulta(
+          data: consultaForm.dataStr,
+          paciente: consultaForm.paciente,
+          medico: consultaForm.medico,
+          cobertura: consultaForm.cobertura,
+        );
+        await consultaRepository.insert(consulta);
+        consultaForm.dispose();
+        Navigator.of(context).pop();
+      } catch (e) {
+        await showDialog(
+          context: context,
+          child: AlertDialog(
+            title: Text('Médico ou paciente já possui consulta marcada'),
+          ),
+        );
+      }
     }
   }
 }

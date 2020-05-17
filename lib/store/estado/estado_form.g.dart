@@ -77,6 +77,40 @@ mixin _$EstadoForm on _EstadoForm, Store {
     }, _$msgSiglaAtom, name: '${_$msgSiglaAtom.name}_set');
   }
 
+  final _$nomeControllerAtom = Atom(name: '_EstadoForm.nomeController');
+
+  @override
+  TextEditingController get nomeController {
+    _$nomeControllerAtom.context.enforceReadPolicy(_$nomeControllerAtom);
+    _$nomeControllerAtom.reportObserved();
+    return super.nomeController;
+  }
+
+  @override
+  set nomeController(TextEditingController value) {
+    _$nomeControllerAtom.context.conditionallyRunInAction(() {
+      super.nomeController = value;
+      _$nomeControllerAtom.reportChanged();
+    }, _$nomeControllerAtom, name: '${_$nomeControllerAtom.name}_set');
+  }
+
+  final _$siglaControllerAtom = Atom(name: '_EstadoForm.siglaController');
+
+  @override
+  TextEditingController get siglaController {
+    _$siglaControllerAtom.context.enforceReadPolicy(_$siglaControllerAtom);
+    _$siglaControllerAtom.reportObserved();
+    return super.siglaController;
+  }
+
+  @override
+  set siglaController(TextEditingController value) {
+    _$siglaControllerAtom.context.conditionallyRunInAction(() {
+      super.siglaController = value;
+      _$siglaControllerAtom.reportChanged();
+    }, _$siglaControllerAtom, name: '${_$siglaControllerAtom.name}_set');
+  }
+
   final _$_EstadoFormActionController = ActionController(name: '_EstadoForm');
 
   @override
@@ -100,9 +134,19 @@ mixin _$EstadoForm on _EstadoForm, Store {
   }
 
   @override
+  void clearControllers() {
+    final _$actionInfo = _$_EstadoFormActionController.startAction();
+    try {
+      return super.clearControllers();
+    } finally {
+      _$_EstadoFormActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'nome: ${nome.toString()},sigla: ${sigla.toString()},msgNome: ${msgNome.toString()},msgSigla: ${msgSigla.toString()}';
+        'nome: ${nome.toString()},sigla: ${sigla.toString()},msgNome: ${msgNome.toString()},msgSigla: ${msgSigla.toString()},nomeController: ${nomeController.toString()},siglaController: ${siglaController.toString()}';
     return '{$string}';
   }
 }

@@ -69,6 +69,7 @@ class EnderecoFormView extends StatelessWidget {
                             labelText: 'Estado',
                             labelStyle: TextStyle(),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                            errorText: enderecoForm.msgEstado,
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(

@@ -78,6 +78,7 @@ class MedicoFormView extends StatelessWidget {
                   labelText: 'Especialidade',
                   labelStyle: TextStyle(),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                  errorText: medicoForm.msgEspecialidade,
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(

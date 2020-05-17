@@ -111,6 +111,7 @@ class PacienteFormView extends StatelessWidget {
                   labelText: 'Endereco',
                   labelStyle: TextStyle(),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                  errorText: pacienteForm.msgEndereco,
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(

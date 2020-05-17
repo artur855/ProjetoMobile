@@ -9,7 +9,7 @@ class MedicoRepository extends BaseRepository<Medico>{
   String tableName = 'MEDICO';
 
   @override
-  Future<List<Medico>> getAll({bool includeEspecialidade: true}) async {
+  Future<List<Medico>> getAll({bool includeEspecialidade: true, idEspecialidade}) async {
     var db = await super.db;
     var medicos = List<Map>();
     if (includeEspecialidade){
@@ -17,7 +17,11 @@ class MedicoRepository extends BaseRepository<Medico>{
     } else{
       medicos = await db.query(tableName, columns: ['ID_MEDICO', 'NOME_MEDICO', 'CRM', 'ID_ESPECIALIDADE']);
     }
-    return medicos.map((m)=> Medico.fromMap(m, includeEspecialidade: includeEspecialidade)).toList();
+    var medicosObj = medicos.map((m)=> Medico.fromMap(m, includeEspecialidade: includeEspecialidade)).toList();
+    if (idEspecialidade != null){
+      medicosObj.where((m)=> m.especialidadeId == idEspecialidade).toList();
+    }
+    return medicosObj;
   }
 
   @override

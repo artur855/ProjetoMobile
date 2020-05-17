@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'login_form.g.dart';
@@ -10,6 +11,7 @@ abstract class _LoginForm with Store {
 
   @observable
   String senha;
+
 
   @observable
   int radioSelected = 1;
@@ -31,6 +33,7 @@ abstract class _LoginForm with Store {
       reaction((_) => senha, validarSenha),
       reaction((_) => radioSelected, validarRadio),
     ];
+
   }
 
   bool validarAll() {
@@ -42,13 +45,13 @@ abstract class _LoginForm with Store {
 
   @action
   bool validarLogin(String value) {
-    msgLogin = login == null || login.isEmpty ? 'Login não pode ser vazio' : null;
+    msgLogin = value == null || value.isEmpty ? 'Login não pode ser vazio' : null;
     return msgLogin == null;
   }
 
   @action
   bool validarSenha(String value) {
-    msgSenha = senha == null || login.isEmpty ? 'Senha não pode ser vazia' : null;
+    msgSenha = value == null || value.isEmpty ? 'Senha não pode ser vazia' : null;
     return msgSenha == null;
   }
 
@@ -62,13 +65,7 @@ abstract class _LoginForm with Store {
   void setRadio(int value) {
     this.radioSelected = value;
   }
-  @action
-  void setLogin(String value) {
-    this.login = value;
-  }@action
-  void setSenha(String value) {
-    this.senha = value;
-  }
+
 
   void dispose() {
     for (var disposer in _disposers) {

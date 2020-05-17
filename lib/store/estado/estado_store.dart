@@ -1,7 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:projetomobile/model/estado.dart';
 part 'estado_store.g.dart';
-// flutter packages pub run build_runner build
 
 class EstadoStore = _EstadoStore with _$EstadoStore;
 

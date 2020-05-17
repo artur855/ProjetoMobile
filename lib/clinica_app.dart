@@ -11,15 +11,14 @@ import 'package:projetomobile/view/admin/cobertura/cobertura_home_view.dart';
 import 'package:projetomobile/view/admin/consulta/admin_consulta_home_view.dart';
 import 'package:projetomobile/view/admin/endereco/endereco_home_view.dart';
 import 'package:projetomobile/view/admin/especialidade/especialidade_home_view.dart';
-import 'package:projetomobile/view/admin/estado/estado_home_view.dart';
+import 'package:projetomobile/view/admin/estado/admin_estado_home_view.dart';
 import 'package:projetomobile/view/login/login_view.dart';
 import 'package:projetomobile/view/admin/medico/admin_medico_home_view.dart';
 import 'package:projetomobile/view/admin/paciente/paciente_home_view.dart';
 import 'package:projetomobile/view/admin/admin_home_view.dart';
 import 'package:projetomobile/view/medico/medico_home_view.dart';
-import 'package:projetomobile/view/paciente/paciente_home_view.dart';
+import 'package:projetomobile/view/paciente/paciente_consulta_home_view.dart';
 import 'package:provider/provider.dart';
-
 
 class ClinicaApp extends StatelessWidget {
   @override
@@ -57,28 +56,28 @@ class ClinicaApp extends StatelessWidget {
   Widget _wrapWithWillPopWidget(BuildContext context, Widget child) {
     UsuarioRepository usuarioRepository = Provider.of<UsuarioRepository>(context);
     return WillPopScope(
-      onWillPop: () =>
-          showDialog<bool>(
-            context: context,
-            builder: (c) =>
-                AlertDialog(
-                  title: Text('Aviso'),
-                  content: Text('Tem certeza que quer sair?'),
-                  actions: [
-                    FlatButton(
-                      child: Text('Sim'),
-                      onPressed: () {
-                        usuarioRepository.logout();
-                        Navigator.pop(c, true);
-                      },
-                    ),
-                    FlatButton(
-                      child: Text('Não'),
-                      onPressed: () => Navigator.pop(c, false),
-                    ),
-                  ],
-                ),
-          ),
+      onWillPop: () => showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Aviso'),
+          content: Text('Tem certeza que quer sair?'),
+          actions: [
+            FlatButton(
+              child: Text('Sim'),
+              onPressed: () {
+                usuarioRepository.logout();
+                Navigator.of(context).pop(true);
+              },
+            ),
+            FlatButton(
+              child: Text('Não'),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+          ],
+        ),
+      ),
       child: child,
     );
   }

@@ -12,7 +12,19 @@ class Consulta {
   Cobertura cobertura;
   int idCobertura;
 
-  Consulta({this.id, this.data, this.medico, this.idMedico, this.paciente, this.idPaciente, this.cobertura, this.idCobertura});
+  DateTime get dataParsed {
+    var partsOfDate = this.data.split('/');
+    var day = num.parse(partsOfDate[0]);
+    var month = num.parse(partsOfDate[1]);
+    var year = num.parse(partsOfDate[2]);
+    return DateTime(year, month, day);
+  }
+
+  Consulta({this.id, this.data, this.medico, this.idMedico, this.paciente, this.idPaciente, this.cobertura, this.idCobertura}) {
+   this.idPaciente = this.paciente.id;
+   this.idMedico = this.medico.id;
+   this.idCobertura = this.cobertura.id;
+  }
 
   Consulta.fromMap(Map<String, dynamic> map, {includePacienteMedicoCobertura: true}) {
     this.id = map['ID_CONSULTA'];

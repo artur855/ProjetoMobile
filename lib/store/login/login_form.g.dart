@@ -154,26 +154,6 @@ mixin _$LoginForm on _LoginForm, Store {
   }
 
   @override
-  void setLogin(String value) {
-    final _$actionInfo = _$_LoginFormActionController.startAction();
-    try {
-      return super.setLogin(value);
-    } finally {
-      _$_LoginFormActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setSenha(String value) {
-    final _$actionInfo = _$_LoginFormActionController.startAction();
-    try {
-      return super.setSenha(value);
-    } finally {
-      _$_LoginFormActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     final string =
         'login: ${login.toString()},senha: ${senha.toString()},radioSelected: ${radioSelected.toString()},msgLogin: ${msgLogin.toString()},msgSenha: ${msgSenha.toString()},msgRadio: ${msgRadio.toString()}';

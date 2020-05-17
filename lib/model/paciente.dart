@@ -33,7 +33,7 @@ class Paciente extends Usuario {
 
   Map<String, dynamic> toMap() {
     return {
-      'ID_USUARIO': this.id,
+      'ID_PACIENTE': this.id,
       'NOME_PACIENTE': this.nome,
       'DAT_NASCIMENTO': this.datNascimento,
       'TELEFONE_PACIENTE': this.telefone,

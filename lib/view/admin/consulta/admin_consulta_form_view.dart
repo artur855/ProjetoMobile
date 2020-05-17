@@ -15,7 +15,7 @@ class AdminConsultaFormView extends StatelessWidget {
   final String title;
   final Function(BuildContext context, ConsultaForm consultaForm, ConsultaRepository consultaRepository) onSubmit;
   final _formKey = GlobalKey();
-  final ConsultaForm consultaForm= ConsultaForm();
+  final ConsultaForm consultaForm = ConsultaForm();
 
   ConsultaRepository consultaRepository;
   PacienteRepository pacienteRepository;
@@ -53,7 +53,7 @@ class AdminConsultaFormView extends StatelessWidget {
                         );
                         consultaForm.data = dataConsulta;
                       },
-                      child: Text( consultaForm.dataStr ?? 'Escolha a data da consulta'),
+                      child: Text(consultaForm.dataStr ?? 'Escolha a data da consulta'),
                     ),
                   ),
                 ),
@@ -75,9 +75,7 @@ class AdminConsultaFormView extends StatelessWidget {
     );
   }
 
-
-
-  Widget _dropDownPaciente(){
+  Widget _dropDownPaciente() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: FutureBuilder(
@@ -89,9 +87,9 @@ class AdminConsultaFormView extends StatelessWidget {
           }
           List<DropdownMenuItem> itemsPacientes = pacientes
               .map((paciente) => DropdownMenuItem(
-            value: paciente,
-            child: Text('${paciente.nome} - ${paciente.cpfFormated}'),
-          ))
+                    value: paciente,
+                    child: Text('${paciente.nome} - ${paciente.cpfFormated}'),
+                  ))
               .toList();
           return Observer(
             builder: (_) => InputDecorator(
@@ -99,6 +97,7 @@ class AdminConsultaFormView extends StatelessWidget {
                 labelText: 'Pacientes',
                 labelStyle: TextStyle(),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                errorText: consultaForm.msgPaciente,
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
@@ -115,7 +114,8 @@ class AdminConsultaFormView extends StatelessWidget {
       ),
     );
   }
-  Widget _dropDownMedico(){
+
+  Widget _dropDownMedico() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: FutureBuilder(
@@ -127,9 +127,9 @@ class AdminConsultaFormView extends StatelessWidget {
           }
           List<DropdownMenuItem> itemsMedicos = medicos
               .map((medico) => DropdownMenuItem(
-            value: medico,
-            child: Text('${medico.nome} - ${medico.crm} - ${medico.especialidade?.dsc}'),
-          ))
+                    value: medico,
+                    child: Text('${medico.nome} - ${medico.crm} - ${medico.especialidade?.dsc}'),
+                  ))
               .toList();
           return Observer(
             builder: (_) => InputDecorator(
@@ -137,6 +137,7 @@ class AdminConsultaFormView extends StatelessWidget {
                 labelText: 'Médico',
                 labelStyle: TextStyle(),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                errorText: consultaForm.msgMedico,
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
@@ -153,7 +154,8 @@ class AdminConsultaFormView extends StatelessWidget {
       ),
     );
   }
-  Widget _dropDownCobertura(){
+
+  Widget _dropDownCobertura() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: FutureBuilder(
@@ -165,9 +167,9 @@ class AdminConsultaFormView extends StatelessWidget {
           }
           List<DropdownMenuItem> itemsCoberturas = coberturas
               .map((cobertura) => DropdownMenuItem(
-            value: cobertura,
-            child: Text('${cobertura.dsc}'),
-          ))
+                    value: cobertura,
+                    child: Text('${cobertura.dsc}'),
+                  ))
               .toList();
           return Observer(
             builder: (_) => InputDecorator(
@@ -175,6 +177,7 @@ class AdminConsultaFormView extends StatelessWidget {
                 labelText: 'Cobertura',
                 labelStyle: TextStyle(),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                errorText: consultaForm.msgCobertura,
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
